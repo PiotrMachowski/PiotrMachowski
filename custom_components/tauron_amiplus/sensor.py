@@ -139,6 +139,10 @@ class TauronAmiplusSensor(Entity):
     def unit_of_measurement(self):
         return self.unit
 
+    @property
+    def icon(self):
+        return 'mdi:counter'
+
     def _update(self):
         if self.sensor_type == ZONE:
             self.update_zone()
