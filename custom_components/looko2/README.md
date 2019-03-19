@@ -30,5 +30,5 @@ sensor:
       - 'PM10'
       - 'PM25'
       - 'PreviousIJP'
-      - 'Temperature
+      - 'Temperature'
 ```
