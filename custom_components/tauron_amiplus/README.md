@@ -1,6 +1,6 @@
 # Tauron AMIplus sensor
 
-This sensor uses unofficial API to get data energy usage data from [_*TAURON eLicznik*_](https://elicznik.tauron-dystrybucja.pl).
+This sensor uses unofficial API to get energy usage data from [_*TAURON eLicznik*_](https://elicznik.tauron-dystrybucja.pl).
 
 WARNING: Currently it only supports only G12 tariff.
 
