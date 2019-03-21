@@ -202,7 +202,23 @@ class TauronAmiplusSensor(Entity):
         response = session.request("POST", TauronAmiplusSensor.url_charts,
                                    data={**TauronAmiplusSensor.payload_charts, **payload},
                                    headers=TauronAmiplusSensor.headers)
-        if response.status_code == 200 and response.text.startswith('{"name"'):
+        correct_data = False
+        if response.status_code == 200 and response.text.startswith('{"name"') and response.json()['isFull']:
+            correct_data = True
+        else:
+            session = self.get_session()
+            payload = {
+                "dane[chartDay]": (datetime.datetime.now() - datetime.timedelta(2)).strftime('%d.%m.%Y'),
+                "dane[paramType]": "day",
+                "dane[smartNr]": self.meter_id,
+                "dane[chartType]": 2
+            }
+            response = session.request("POST", TauronAmiplusSensor.url_charts,
+                                       data={**TauronAmiplusSensor.payload_charts, **payload},
+                                       headers=TauronAmiplusSensor.headers)
+            if response.status_code == 200 and response.text.startswith('{"name"'):
+                correct_data = True
+        if correct_data:
             json_data = response.json()
             self._state = round(float(json_data['sum']), 3)
             if self.mode == TARIFF_G12:
