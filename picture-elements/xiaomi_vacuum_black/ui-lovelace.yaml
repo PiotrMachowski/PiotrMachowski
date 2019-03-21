@@ -1,0 +1,8 @@
+title: Home Assistant
+
+views:
+  - path: home
+    title: Home
+    icon: 'mdi:home'
+    cards:
+      - !include vacuum_card.yaml

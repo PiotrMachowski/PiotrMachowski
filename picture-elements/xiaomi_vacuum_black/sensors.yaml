@@ -1,0 +1,24 @@
+- platform: template
+  sensors:
+    vacuum_battery:
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('vacuum.xiaomi_vacuum', 'battery_level') }}"
+      icon_template: mdi:battery
+      device_class: battery
+    vacuum_status:
+      value_template: "{{ states.vacuum.xiaomi_vacuum.attributes.status }}"
+    vacuum_main_brush:
+      value_template: '{{ states.vacuum.xiaomi_vacuum.attributes.main_brush_left }}'
+      unit_of_measurement: 'h'
+    vacuum_side_brush:
+      value_template: '{{ states.vacuum.xiaomi_vacuum.attributes.side_brush_left }}'
+      unit_of_measurement: 'h'
+    vacuum_filter:
+      value_template: '{{ states.vacuum.xiaomi_vacuum.attributes.filter_left }}'
+      unit_of_measurement: 'h'
+    vacuum_sensor:
+      value_template: '{{ states.vacuum.xiaomi_vacuum.attributes.sensor_dirty_left }}'
+      unit_of_measurement: 'h'
+    vacuum_fan_speed:
+      value_template: '{{ states.vacuum.xiaomi_vacuum.attributes.fan_speed }}'
+      unit_of_measurement: '%'

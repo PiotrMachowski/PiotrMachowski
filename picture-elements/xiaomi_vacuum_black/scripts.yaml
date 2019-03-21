@@ -1,0 +1,44 @@
+vacuum_emptying:
+  alias: Vacuum emptying
+  sequence:
+    - service: vacuum.stop
+      data:
+        entity_id: vacuum.xiaomi_vacuum
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.xiaomi_vacuum
+        command: app_goto_target
+        params: [30500, 31500]
+vacuum_territory:
+  alias: Vacuum territory
+  sequence:
+    - service_template: >
+        {%- if is_state('input_select.vacuum_territory', 'All') %}
+          script.vacuum_all
+        {% elif is_state('input_select.vacuum_territory', 'Room 1') %}
+          script.vacuum_room_1
+        {% elif is_state('input_select.vacuum_territory', 'Room 2') %}
+          script.vacuum_room_2
+        {% endif -%}
+vacuum_room_1:
+  alias: Vacuum Room 1
+  sequence:
+    - service: vacuum.stop
+      data:
+        entity_id: vacuum.xiaomi_vacuum
+    - service: vacuum.xiaomi_clean_zone
+      data_template:
+        entity_id: vacuum.xiaomi_vacuum
+        repeats: '{{ states.input_number.vacuum_times.state | int }}'
+        zone: [[28852, 25151, 30505, 26886]]
+vacuum_room_2:
+  alias: Vacuum Room 2
+  sequence:
+    - service: vacuum.stop
+      data:
+        entity_id: vacuum.xiaomi_vacuum
+    - service: vacuum.xiaomi_clean_zone
+      data_template:
+        entity_id: vacuum.xiaomi_vacuum
+        repeats: '{{ states.input_number.vacuum_times.state | int }}'
+        zone: [[23946, 25077, 27332, 27960], [27319, 26815, 28865, 27947]]

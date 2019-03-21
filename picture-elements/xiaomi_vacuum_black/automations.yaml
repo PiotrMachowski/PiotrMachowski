@@ -1,0 +1,10 @@
+- alias: vacuum_cleaning_enable
+  initial_state: 'off'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    to: "not_home"
+  action:
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.xiaomi_vacuum

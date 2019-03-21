@@ -1,0 +1,209 @@
+type: vertical-stack
+cards:
+  - type: picture-elements
+    image: /local/images/vacuum.jpg
+    elements:
+      - type: image
+        entity: vacuum.xiaomi_vacuum
+        image: /local/images/vacuumOverlay.png
+        tap_action:
+          action: call-service
+          service: input_boolean.toggle
+          service_data:
+            entity_id: input_boolean.vacuum_show_options
+        hold_action:
+          action: more-info
+        style:
+          top: 18%
+          left: 32%
+          transform: translate(0%,0%)
+          right: 30%
+      - type: icon
+        icon: mdi:play
+        tap_action:
+          action: call-service
+          service: vacuum.start
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum
+        style:
+          top: 90%
+          left: 20%
+          "--paper-item-icon-color": rgb(255,255,255)
+      - type: icon
+        icon: mdi:pause
+        tap_action:
+          action: call-service
+          service: vacuum.pause
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum
+        style:
+          top: 90%
+          left: 30%
+          "--paper-item-icon-color": rgb(255,255,255)
+      - type: icon
+        icon: mdi:stop
+        tap_action:
+          action: call-service
+          service: vacuum.stop
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum
+        style:
+          top: 90%
+          left: 40%
+          "--paper-item-icon-color": rgb(255,255,255)
+      - type: icon
+        icon: mdi:home
+        tap_action:
+          action: call-service
+          service: vacuum.return_to_base
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum
+        style:
+          top: 90%
+          left: 50%
+          "--paper-item-icon-color": rgb(255,255,255)
+      - type: icon
+        icon: mdi:bell-ring
+        tap_action:
+          action: call-service
+          service: vacuum.locate
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum
+        style:
+          top: 90%
+          left: 60%
+          "--paper-item-icon-color": rgb(255,255,255)
+      - type: state-icon
+        entity: automation.vacuum_cleaning_enable
+        tap_action:
+          action: toggle
+        style:
+          top: 90%
+          left: 70%
+          "--paper-item-icon-color": rgb(255,255,255)
+      - type: icon
+        icon: mdi:trash-can-outline
+        tap_action:
+          action: call-service
+          service: script.vacuum_emptying
+        style:
+          top: 90%
+          left: 80%
+          "--paper-item-icon-color": rgb(255,255,255)
+      - type: state-label
+        entity: vacuum.xiaomi_vacuum
+        prefix: 'State: '
+        style:
+          top: 2%
+          left: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-left-style: solid
+          border-color: rgb(255, 255, 255)
+      - type: state-label
+        entity: sensor.vacuum_status
+        prefix: 'Status: '
+        style:
+          top: 16%
+          left: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-left-style: solid
+          border-color: rgb(255, 255, 255)
+      - type: state-label
+        entity: sensor.vacuum_battery
+        prefix: 'Battery: '
+        style:
+          top: 30%
+          left: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-left-style: solid
+          border-color: rgb(255, 255, 255)
+      - type: state-label
+        entity: sensor.vacuum_fan_speed
+        prefix: 'Fan: '
+        style:
+          top: 44%
+          left: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-left-style: solid
+          border-color: rgb(255, 255, 255)
+      - type: state-label
+        entity: sensor.vacuum_main_brush
+        prefix: 'Main brush: '
+        style:
+          top: 2%
+          right: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-right-style: solid
+          border-color: rgb(255, 255, 255)
+      - type: state-label
+        entity: sensor.vacuum_side_brush
+        prefix: 'Side brush: '
+        style:
+          top: 16%
+          right: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-right-style: solid
+          border-color: rgb(255, 255, 255)
+      - type: state-label
+        entity: sensor.vacuum_filter
+        prefix: 'Filter: '
+        style:
+          top: 30%
+          right: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-right-style: solid
+          border-color: rgb(255, 255, 255)
+      - type: state-label
+        entity: sensor.vacuum_sensor
+        prefix: 'Sensor: '
+        style:
+          top: 44%
+          right: 1%
+          color: rgb(255, 255, 255)
+          transform: translate(0%, 0%)
+          pointer-events: none
+          font-size: 90%
+          font-weight: bold
+          border-right-style: solid
+          border-color: rgb(255, 255, 255)
+  - type: conditional
+    conditions:
+      - entity: input_boolean.vacuum_show_options
+        state: "on"
+    card:
+      type: entities
+      entities:
+        - entity: input_select.vacuum_territory
+          name: 'Room'
+        - entity: input_number.vacuum_times
+          name: 'Times'
+        - entity: script.vacuum_territory
+          name: 'Start'
