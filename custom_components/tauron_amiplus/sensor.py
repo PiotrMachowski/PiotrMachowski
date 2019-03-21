@@ -1,13 +1,12 @@
 import datetime
-from datetime import timedelta
 import logging
+from datetime import timedelta
+
+import homeassistant.helpers.config_validation as cv
 import requests
-
 import voluptuous as vol
-
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (CONF_USERNAME, CONF_PASSWORD, CONF_NAME, CONF_MONITORED_VARIABLES)
-import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
 
@@ -30,6 +29,8 @@ SENSOR_TYPES = {
     CONSUMPTION_YEARLY: [timedelta(hours=1), 'kWh']
 }
 
+TARIFF_G12 = 'G12'
+
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_USERNAME): cv.string,
     vol.Required(CONF_PASSWORD): cv.string,
@@ -45,13 +46,11 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     username = config.get(CONF_USERNAME)
     password = config.get(CONF_PASSWORD)
     meter_id = config.get(CONF_METER_ID)
-    mode = calculate_configuration(username, password, meter_id)[1]
     dev = []
-    if mode == 'G12':
-        for variable in config[CONF_MONITORED_VARIABLES]:
-            dev.append(
-                TauronAmiplusSensor(name, username, password, meter_id, mode, variable, SENSOR_TYPES[variable][1],
-                                    SENSOR_TYPES[variable][0]))
+    for variable in config[CONF_MONITORED_VARIABLES]:
+        dev.append(
+            TauronAmiplusSensor(name, username, password, meter_id, variable, SENSOR_TYPES[variable][1],
+                                SENSOR_TYPES[variable][0]))
     add_entities(dev, True)
 
 
@@ -76,9 +75,8 @@ def calculate_configuration(username, password, meter_id, days_before=2):
     response = session.request("POST", TauronAmiplusSensor.url_charts,
                                data={**TauronAmiplusSensor.payload_charts, **payload},
                                headers=TauronAmiplusSensor.headers)
-    json = response.json()
-    print(response.text)
-    zones = json['dane']['zone']
+    json_data = response.json()
+    zones = json_data['dane']['zone']
     parsed_zones = []
     for zone in zones:
         start = datetime.time(hour=int(zone['start'][11:]))
@@ -91,7 +89,7 @@ def calculate_configuration(username, password, meter_id, days_before=2):
         stop = datetime.time(parsed_zones[next_i]['start'].hour)
         calculated_zones.append({'start': start, 'stop': stop})
     power_zones = {1: parsed_zones, 2: calculated_zones}
-    tariff = json['dane']['chart'][0]['Taryfa']
+    tariff = json_data['dane']['chart'][0]['Taryfa']
     return power_zones, tariff, config_date.strftime('%d.%m.%Y, %H:%M')
 
 
@@ -102,22 +100,21 @@ class TauronAmiplusSensor(Entity):
         'cache-control': "no-cache",
     }
     payload_charts = {
-        "dane[paramArea]": "dzienna",
         "dane[cache]": 0,
     }
 
-    def __init__(self, name, username, password, meter_id, mode, sensor_type, unit, interval: timedelta):
+    def __init__(self, name, username, password, meter_id, sensor_type, unit, interval: timedelta):
         self.client_name = name
         self.username = username
         self.password = password
         self.meter_id = meter_id
-        self.mode = mode
         self.sensor_type = sensor_type
         self.unit = unit
         configuration = calculate_configuration(username, password, meter_id)
         self.power_zones = configuration[0]
-        self.power_zones_last_update_tech = datetime.datetime.now() - datetime.timedelta(days=1)
+        self.mode = configuration[1]
         self.power_zones_last_update = configuration[2]
+        self.power_zones_last_update_tech = datetime.datetime.now() - datetime.timedelta(days=1)
         self.data = None
         self.params = {}
         self._state = None
@@ -133,7 +130,8 @@ class TauronAmiplusSensor(Entity):
 
     @property
     def device_state_attributes(self):
-        return self.params
+        _params = {'tariff': self.mode, 'updated': self.power_zones_last_update, **self.params}
+        return _params
 
     @property
     def unit_of_measurement(self):
@@ -144,6 +142,7 @@ class TauronAmiplusSensor(Entity):
         return 'mdi:counter'
 
     def _update(self):
+        self.update_configuration()
         if self.sensor_type == ZONE:
             self.update_zone()
         elif self.sensor_type == CONSUMPTION_DAILY:
@@ -166,25 +165,31 @@ class TauronAmiplusSensor(Entity):
                         headers=TauronAmiplusSensor.headers)
         return session
 
-    def update_zone(self):
-        parsed_zones = self.power_zones[1]
+    def update_configuration(self):
         now_datetime = datetime.datetime.now()
-        now_time = now_datetime.time()
-        if len(list(filter(lambda x: x['start'] <= now_time < x['stop'], parsed_zones))) > 0:
-            self._state = 1
-        else:
-            self._state = 2
-        self.params = {'tariff': self.mode, 'updated': self.power_zones_last_update}
-        for power_zone in self.power_zones:
-            pz_name = 'zone{} '.format(power_zone)
-            pz = str(list(map(lambda x: x['start'].strftime('%H:%M') + ' - ' + x['stop'].strftime('%H:%M'),
-                              self.power_zones[power_zone]))).replace('[', '').replace(']', '').replace("'", '')
-            self.params[pz_name] = pz
-        if (now_datetime - datetime.timedelta(days=1)) > self.power_zones_last_update_tech and now_datetime.hour > 10:
+        if (now_datetime - datetime.timedelta(days=1)) >= self.power_zones_last_update_tech and now_datetime.hour >= 10:
             config = calculate_configuration(self.username, self.password, self.meter_id, 1)
             self.power_zones = config[0]
-            self.power_zones_last_update_tech = now_datetime
+            self.mode = config[1]
             self.power_zones_last_update = config[2]
+            self.power_zones_last_update_tech = now_datetime
+
+    def update_zone(self):
+        if self.mode == TARIFF_G12:
+            parsed_zones = self.power_zones[1]
+            now_time = datetime.datetime.now().time()
+            if len(list(filter(lambda x: x['start'] <= now_time < x['stop'], parsed_zones))) > 0:
+                self._state = 1
+            else:
+                self._state = 2
+            self.params = {}
+            for power_zone in self.power_zones:
+                pz_name = 'zone{} '.format(power_zone)
+                pz = str(list(map(lambda x: x['start'].strftime('%H:%M') + ' - ' + x['stop'].strftime('%H:%M'),
+                                  self.power_zones[power_zone]))).replace('[', '').replace(']', '').replace("'", '')
+                self.params[pz_name] = pz
+        else:
+            self._state = 1
 
     def update_consumption_daily(self):
         session = self.get_session()
@@ -198,15 +203,16 @@ class TauronAmiplusSensor(Entity):
                                    data={**TauronAmiplusSensor.payload_charts, **payload},
                                    headers=TauronAmiplusSensor.headers)
         if response.status_code == 200 and response.text.startswith('{"name"'):
-            json = response.json()
-            self._state = round(float(json['sum']), 3)
-            values = json['dane']['chart']
-            z1 = list(filter(lambda x: x['Zone'] == '1', values))
-            z2 = list(filter(lambda x: x['Zone'] == '2', values))
-            sum_z1 = round(sum(float(val['EC']) for val in z1), 3)
-            sum_z2 = round(sum(float(val['EC']) for val in z2), 3)
-            day = values[0]['Date']
-            self.params = {'zone1': sum_z1, 'zone2': sum_z2, 'day': day}
+            json_data = response.json()
+            self._state = round(float(json_data['sum']), 3)
+            if self.mode == TARIFF_G12:
+                values = json_data['dane']['chart']
+                z1 = list(filter(lambda x: x['Zone'] == '1', values))
+                z2 = list(filter(lambda x: x['Zone'] == '2', values))
+                sum_z1 = round(sum(float(val['EC']) for val in z1), 3)
+                sum_z2 = round(sum(float(val['EC']) for val in z2), 3)
+                day = values[0]['Date']
+                self.params = {'zone1': sum_z1, 'zone2': sum_z2, 'day': day}
 
     def update_consumption_monthly(self):
         session = self.get_session()
@@ -221,14 +227,15 @@ class TauronAmiplusSensor(Entity):
                                    data={**TauronAmiplusSensor.payload_charts, **payload},
                                    headers=TauronAmiplusSensor.headers)
         if response.status_code == 200 and response.text.startswith('{"name"'):
-            json = response.json()
-            self._state = round(float(json['sum']), 3)
-            values = json['dane']['chart']
-            z1 = list(filter(lambda x: 'tariff1' in x, values))
-            z2 = list(filter(lambda x: 'tariff2' in x, values))
-            sum_z1 = round(sum(float(val['tariff1']) for val in z1), 3)
-            sum_z2 = round(sum(float(val['tariff2']) for val in z2), 3)
-            self.params = {'zone1': sum_z1, 'zone2': sum_z2}
+            json_data = response.json()
+            self._state = round(float(json_data['sum']), 3)
+            if self.mode == TARIFF_G12:
+                values = json_data['dane']['chart']
+                z1 = list(filter(lambda x: 'tariff1' in x, values))
+                z2 = list(filter(lambda x: 'tariff2' in x, values))
+                sum_z1 = round(sum(float(val['tariff1']) for val in z1), 3)
+                sum_z2 = round(sum(float(val['tariff2']) for val in z2), 3)
+                self.params = {'zone1': sum_z1, 'zone2': sum_z2}
 
     def update_consumption_yearly(self):
         session = self.get_session()
@@ -242,11 +249,12 @@ class TauronAmiplusSensor(Entity):
                                    data={**TauronAmiplusSensor.payload_charts, **payload},
                                    headers=TauronAmiplusSensor.headers)
         if response.status_code == 200 and response.text.startswith('{"name"'):
-            json = response.json()
-            self._state = round(float(json['sum']), 3)
-            values = json['dane']['chart']
-            z1 = list(filter(lambda x: 'tariff1' in x, values))
-            z2 = list(filter(lambda x: 'tariff2' in x, values))
-            sum_z1 = round(sum(float(val['tariff1']) for val in z1), 3)
-            sum_z2 = round(sum(float(val['tariff2']) for val in z2), 3)
-            self.params = {'zone1': sum_z1, 'zone2': sum_z2}
+            json_data = response.json()
+            self._state = round(float(json_data['sum']), 3)
+            if self.mode == TARIFF_G12:
+                values = json_data['dane']['chart']
+                z1 = list(filter(lambda x: 'tariff1' in x, values))
+                z2 = list(filter(lambda x: 'tariff2' in x, values))
+                sum_z1 = round(sum(float(val['tariff1']) for val in z1), 3)
+                sum_z2 = round(sum(float(val['tariff2']) for val in z2), 3)
+                self.params = {'zone1': sum_z1, 'zone2': sum_z2}

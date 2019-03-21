@@ -2,7 +2,7 @@
 
 This sensor uses unofficial API to get energy usage data from [_*TAURON eLicznik*_](https://elicznik.tauron-dystrybucja.pl).
 
-WARNING: Currently it only supports only G12 tariff.
+WARNING: Currently it only supports only G11 and G12 tariffs.
 
 ## Example usage
 
