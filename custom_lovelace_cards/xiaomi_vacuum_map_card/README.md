@@ -68,3 +68,5 @@ views:
     }
     ```
 * You can find out coordinates for zones using app [FloleVac](https://play.google.com/store/apps/details?id=de.flole.xiaomi)
+
+* For Polish version download `textsPL.js` and change file name to `texts.js`

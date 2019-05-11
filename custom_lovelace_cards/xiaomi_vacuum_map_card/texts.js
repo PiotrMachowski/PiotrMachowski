@@ -1,11 +1,11 @@
-const textMode = "Tryb";
-const textGoToTarget = "Idź do punktu";
-const textZonedCleanup = "Czyszczenie strefowe";
-const textZones = "Strefy";
-const textRun = "Uruchom";
-const textRepeats = "Razy:";
-const textRemoveLastZone = "Usuń ostatnią strefę";
-const textRemoveAllZones = "Wyczyść";
+const textMode = "Mode";
+const textGoToTarget = "Go to target";
+const textZonedCleanup = "Zoned cleanup";
+const textZones = "Zones";
+const textRun = "Start";
+const textRepeats = "Times:";
+const textRemoveLastZone = "Remove last zone";
+const textRemoveAllZones = "Remove all zones";
 
 export {
     textMode,
