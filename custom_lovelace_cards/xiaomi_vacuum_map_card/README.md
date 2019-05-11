@@ -15,7 +15,7 @@ This card enables you to specify target or start zoned cleanup using map, just l
 ![Defined zones](https://github.com/PiotrMachowski/Home-Assistant/blob/master/custom_lovelace_cards/xiaomi_vacuum_map_card/s4.png)
 
 ## Installation
-1. Download [xiaomi-vacuum-map-card.js](https://github.com/PiotrMachowski/Home-Assistant/blob/master/custom_lovelace_cards/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js), [texts.js](https://github.com/PiotrMachowski/Home-Assistant/blob/master/custom_lovelace_cards/xiaomi_vacuum_map_card/texts.js) and [style.js](https://github.com/PiotrMachowski/Home-Assistant/blob/master/custom_lovelace_cards/xiaomi_vacuum_map_card/style.js) to `/www/custom_lovelace/xiaomi_vacuum_map_card` folder
+1. Download [xiaomi-vacuum-map-card.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js), [texts.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/texts.js) and [style.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/style.js) to `/www/custom_lovelace/xiaomi_vacuum_map_card` folder
 2. Add card to resources:
 ```yaml
 resources:
@@ -69,4 +69,4 @@ views:
     ```
 * You can find out coordinates for zones using app [FloleVac](https://play.google.com/store/apps/details?id=de.flole.xiaomi)
 
-* For Polish version download `textsPL.js` and change file name to `texts.js`
+* For Polish version download [textsPL.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/textsPL.js) and change filename to `texts.js`
