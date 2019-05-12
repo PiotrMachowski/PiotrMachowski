@@ -15,13 +15,20 @@ This card enables you to specify target or start zoned cleanup using map, just l
 ![Defined zones](https://github.com/PiotrMachowski/Home-Assistant/blob/master/custom_lovelace_cards/xiaomi_vacuum_map_card/s4.png)
 
 ## Installation
-1. Download [xiaomi-vacuum-map-card.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js), [texts.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/texts.js) and [style.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/style.js) to `/www/custom_lovelace/xiaomi_vacuum_map_card` folder
+1. Download [xiaomi-vacuum-map-card.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js), [texts.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/texts.js) and [style.js](https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/style.js) to `/www/custom_lovelace/xiaomi_vacuum_map_card` folder:
+    ```bash
+    mkdir -p www/custom_lovelace/xiaomi_vacuum_map_card
+    cd www/custom_lovelace/xiaomi_vacuum_map_card/
+    wget https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js
+    wget https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/texts.js
+    wget https://github.com/PiotrMachowski/Home-Assistant/raw/master/custom_lovelace_cards/xiaomi_vacuum_map_card/style.js
+    ```
 2. Add card to resources in `ui-lovelace.yaml` or in raw editor if you are using frontend UI editor:
-```yaml
-resources:
-  - url: /local/custom_lovelace/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js
-    type: module
-```
+    ```yaml
+    resources:
+      - url: /local/custom_lovelace/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js
+        type: module
+    ```
 
 ## Configuration
 Example:
@@ -65,6 +72,14 @@ views:
       "entity_id": "vacuum.xiaomi_vacuum",
       "command": "app_goto_target",
       "params": [26500, 26500]
+    }
+    ```
+  Alternatively you can use `vacuum.xiaomi_clean_zone`:
+    ```json
+    {
+      "entity_id": "vacuum.xiaomi_vacuum",
+      "zone": [[25500, 25500, 26500, 26500]],
+      "repeats": 1
     }
     ```
 * You can find out coordinates for zones using app [FloleVac](https://play.google.com/store/apps/details?id=de.flole.xiaomi)
