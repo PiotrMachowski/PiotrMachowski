@@ -1,0 +1,8 @@
+{
+  "domain": "looko2",
+  "name": "LookO2",
+  "documentation": "https://github.com/PiotrMachowski/Home-Assistant/tree/master/custom_components/looko2",
+  "dependencies": [],
+  "codeowners": ["PiotrMachowski"],
+  "requirements": ["requests"]
+}
