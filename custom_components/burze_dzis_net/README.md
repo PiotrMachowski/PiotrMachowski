@@ -1,6 +1,6 @@
 # Burze.dzis.net sensor
 
-This sensor uses official API to get weather warnings [_*Burze.dzis.net*_](https://burze.dzis.net/).
+This sensor uses official API to get weather warnings from [_*Burze.dzis.net*_](https://burze.dzis.net/).
 
 ## Configuration options
 
@@ -33,7 +33,7 @@ This sensor uses official API to get weather warnings [_*Burze.dzis.net*_](https
 ## Example usage
 
 ```
-sensor:
+binary_sensor:
   - platform: burze_dzis_net
     api_key: !secret burze_dzis_net.api_key
     warnings:
