@@ -8,16 +8,16 @@ This sensor uses official API to get weather warnings from [_*Burze.dzis.net*_](
 | --- | --- | --- | --- | --- |
 | `name` | `string` | `False` | `Burze.dzis.net` | Name of sensor |
 | `api_key` | `string` | `True` | - | API key for Burze.dzis.net |
-| `latitude` | `float` | `False` | Latitude of home | Latitude of monitored point. |
-| `longitude` | `float` | `False` | Longitude of home | Longitude of monitored point. |
-| `warnings` | `list` | `False` | - | List of monitored warnings. |
-| `storms_nearby` | - | `False` | - | Enables monitoring nearby storms. |
+| `latitude` | `float` | `False` | Latitude of home | Latitude of monitored point |
+| `longitude` | `float` | `False` | Longitude of home | Longitude of monitored point |
+| `warnings` | `list` | `False` | - | List of monitored warnings |
+| `storms_nearby` | - | `False` | - | Enables monitoring nearby storms |
 
 ### Configuration options of `storms_nearby`
 
 | Key | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `radius` | `positive int` | `True` | - | Radius of nearby storms monitoring. |
+| `radius` | `positive int` | `True` | - | Radius of nearby storms monitoring |
 
 ### Possible monitored warnings
 
