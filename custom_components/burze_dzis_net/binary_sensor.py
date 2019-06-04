@@ -46,6 +46,10 @@ def get_service():
     return Client('https://burze.dzis.net/soap.php?WSDL').service
 
 
+def convert_to_dm(dmf):
+    return '{}.{:02}'.format(int(dmf), round(dmf % 1 * 60))
+
+
 def check_connection(api_key):
     try:
         get_service().ostrzezenia_pogodowe('0', '0', api_key)
@@ -66,14 +70,16 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     check_connection(api_key)
     sensors = []
     sensor_name = '{} - '.format(name)
+    x = convert_to_dm(longitude)
+    y = convert_to_dm(latitude)
     for warning_type in warnings:
         uid = '{}_{}'.format(name, warning_type)
         entity_id = async_generate_entity_id(ENTITY_ID_FORMAT, uid, hass=hass)
-        sensors.append(BurzeDzisNetWarningsSensor(entity_id, sensor_name, longitude, latitude, api_key, warning_type))
+        sensors.append(BurzeDzisNetWarningsSensor(entity_id, sensor_name, x, y, api_key, warning_type))
     if storms_nearby is not None:
         uid = '{}_storms_nearby'.format(name)
         entity_id = async_generate_entity_id(ENTITY_ID_FORMAT, uid, hass=hass)
-        sensors.append(BurzeDzisNetStormsNearbySensor(entity_id, sensor_name, longitude, latitude, api_key, radius))
+        sensors.append(BurzeDzisNetStormsNearbySensor(entity_id, sensor_name, x, y, api_key, radius))
     add_entities(sensors, True)
 
 
