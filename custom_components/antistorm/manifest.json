@@ -1,0 +1,8 @@
+{
+  "domain": "antistorm",
+  "name": "Antistorm",
+  "documentation": "https://github.com/PiotrMachowski/Home-Assistant/tree/master/custom_components/antistorm",
+  "dependencies": [],
+  "codeowners": ["PiotrMachowski"],
+  "requirements": ["requests"]
+}
