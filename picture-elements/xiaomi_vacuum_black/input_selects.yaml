@@ -1,7 +1,0 @@
-vacuum_territory:
-  name: Vacuum territory
-  icon: mdi:robot-vacuum
-  options:
-    - 'All'
-    - 'Room 1'
-    - 'Room 2'

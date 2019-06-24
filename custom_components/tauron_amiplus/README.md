@@ -1,21 +1,3 @@
 # Tauron AMIplus sensor
 
-This sensor uses unofficial API to get energy usage data from [_*TAURON eLicznik*_](https://elicznik.tauron-dystrybucja.pl).
-
-WARNING: Currently it only supports G11 and G12 tariffs.
-
-## Example usage
-
-```
-sensor:
-  - platform: tauron_amiplus
-    name: Tauron AMIPlus
-    username: !secret tauron_amiplus.username
-    password: !secret tauron_amiplus.password
-    energy_meter_id: !secret tauron_amiplus.energy_meter_id
-    monitored_variables:
-      - zone
-      - consumption_daily
-      - consumption_monthly
-      - consumption_yearly
-```
+Migrated to separate repository: [*Home Assistant custom components Tauron AMIplus*](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Tauron-AMIplus)
