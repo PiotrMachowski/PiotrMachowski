@@ -17,6 +17,7 @@ This repository is used to present a library of my custom elements for Home Assi
 * [HTML card](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-HTML-card)
 * [HTML Jinja2 Template card](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-HTML-Jinja2-Template-card)
 * [Xiaomi Vacuum Map card](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-Xiaomi-Vacuum-Map-card)
+* [Local Conditional card](https://github.com/PiotrMachowski/Home-Assistant-Lovelace-Local-Conditional-card)
 
 ## Picture-elements cards
 
