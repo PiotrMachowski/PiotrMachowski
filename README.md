@@ -8,8 +8,12 @@ This repository is used to present a library of my custom elements for Home Assi
 * [Google Keep](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Google-Keep)
 * [iMPK](https://github.com/PiotrMachowski/Home-Assistant-custom-components-iMPK)
 * [Looko2](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Looko2)
+* [MPK Kraków](https://github.com/PiotrMachowski/Home-Assistant-custom-components-MPK-KR)
+* [MPK Rzeszów](https://github.com/PiotrMachowski/Home-Assistant-custom-components-MPK-Rzeszow)
 * [Rozkładzik](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Rozkladzik)
+* [SmartThings Soundbar](https://github.com/PiotrMachowski/Home-Assistant-custom-components-SmartThings-Soundbar)
 * [Tauron AMIplus](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Tauron-AMIplus)
+* [Xiaomi Vacuum Map Camera](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Xiaomi-Vacuum-Map-Camera)
 
 ## Custom Lovelace cards
 
