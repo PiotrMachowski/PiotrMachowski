@@ -2,6 +2,8 @@
 [![Community Forum](https://img.shields.io/badge/Community-Forum-41BDF5.svg?style=popout)](https://community.home-assistant.io/u/3_14)
 [![buymeacoffee_badge](https://img.shields.io/badge/Donate-buymeacoffe-ff813f?style=flat)](https://www.buymeacoffee.com/PiotrMachowski)
 
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=PiotrMachowski&theme=dark)
+
 ## Custom components
 
 | Name | HACS support | Forum |
