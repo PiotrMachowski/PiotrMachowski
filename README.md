@@ -49,5 +49,8 @@
 | Name | Forum |
 | --- | --- |
 | [Xiaomi Vacuum garage](https://github.com/PiotrMachowski/Home-Assistant-Xiaomi-Vacuum-garage) | [![community_badge](https://img.shields.io/badge/Community-Forum-41BDF5.svg?style=popout)](https://community.home-assistant.io/t/xiaomi-vacuum-garage/134311) |
+| [Xiaomi Cloud Token Extractor](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor) |  |
+
+
 
 <a href="https://www.buymeacoffee.com/PiotrMachowski" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
