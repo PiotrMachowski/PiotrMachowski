@@ -44,16 +44,16 @@
 
 ## Picture-elements cards
 
-| Name                                                                                                              |
-|-------------------------------------------------------------------------------------------------------------------|
-| [Xiaomi Vacuum Black card](https://github.com/PiotrMachowski/Home-Assistant-picture-elements-Xiaomi-Vacuum-black) |
+| Name                                                                                                              | Stars                                                                                                                  |
+|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| [Xiaomi Vacuum Black card](https://github.com/PiotrMachowski/Home-Assistant-picture-elements-Xiaomi-Vacuum-black) | ![stars_badge](https://img.shields.io/github/stars/PiotrMachowski/Home-Assistant-picture-elements-Xiaomi-Vacuum-black) |
 
 ## Others
 
-| Name                                                                                            | Forum                                                                                                                                                         |
-|-------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Xiaomi Vacuum garage](https://github.com/PiotrMachowski/Home-Assistant-Xiaomi-Vacuum-garage)   | [![community_badge](https://img.shields.io/badge/Community-Forum-41BDF5.svg?style=popout)](https://community.home-assistant.io/t/xiaomi-vacuum-garage/134311) |
-| [Xiaomi Cloud Token Extractor](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor) |                                                                                                                                                               |
+| Name                                                                                            | Stars                                                                                                  | Forum                                                                                                                                                         |
+|-------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Xiaomi Vacuum garage](https://github.com/PiotrMachowski/Home-Assistant-Xiaomi-Vacuum-garage)   | ![stars_badge](https://img.shields.io/github/stars/PiotrMachowski/Home-Assistant-Xiaomi-Vacuum-garage) | [![community_badge](https://img.shields.io/badge/Community-Forum-41BDF5.svg?style=popout)](https://community.home-assistant.io/t/xiaomi-vacuum-garage/134311) |
+| [Xiaomi Cloud Token Extractor](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor) | ![stars_badge](https://img.shields.io/github/stars/PiotrMachowski/Xiaomi-cloud-tokens-extractor)       |                                                                                                                                                               |
 
 
 
