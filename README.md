@@ -1,9 +1,19 @@
-# Home Assistant
 ![stars_badge](https://img.shields.io/github/stars/PiotrMachowski?affiliations=OWNER&label=Total%20Stars)
 ![followers_badge](https://img.shields.io/github/followers/PiotrMachowski?label=Followers)
-[![Community Forum](https://img.shields.io/badge/Community-Forum-41BDF5.svg?style=popout)](https://community.home-assistant.io/u/3_14)
-[![buymeacoffee_badge](https://img.shields.io/badge/Donate-Buy%20Me%20a%20Coffee-ff813f?style=flat)](https://www.buymeacoffee.com/PiotrMachowski)
-[![paypalme_badge](https://img.shields.io/badge/Donate-PayPal-0070ba?style=flat)](https://paypal.me/PiMachowski)
+[![Community Forum][community_forum_shield]][community_forum]
+[![Buy me a coffee][buy_me_a_coffee_shield]][buy_me_a_coffee]
+[![PayPal.Me][paypal_me_shield]][paypal_me]
+
+[community_forum_shield]: https://img.shields.io/static/v1.svg?label=%20&message=Forum&style=popout&color=41bdf5&logo=HomeAssistant&logoColor=white
+[community_forum]: https://community.home-assistant.io/u/3_14
+
+[buy_me_a_coffee_shield]: https://img.shields.io/static/v1.svg?label=%20&message=Buy%20me%20a%20coffee&color=6f4e37&logo=buy%20me%20a%20coffee&logoColor=white
+[buy_me_a_coffee]: https://www.buymeacoffee.com/PiotrMachowski
+
+[paypal_me_shield]: https://img.shields.io/static/v1.svg?label=%20&message=PayPal.Me&logo=paypal
+[paypal_me]: https://paypal.me/PiMachowski
+
+
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=PiotrMachowski&theme=dark)
 
