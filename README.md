@@ -3,7 +3,6 @@
 [![Community Forum][community_forum_shield]][community_forum]
 [![Ko-Fi][ko_fi_shield]][ko_fi]
 [![PayPal.Me][paypal_me_shield]][paypal_me]
-[![Buy me a coffee][buy_me_a_coffee_shield]][buy_me_a_coffee]
 
 [community_forum_shield]: https://img.shields.io/static/v1.svg?label=%20&message=Forum&style=popout&color=41bdf5&logo=HomeAssistant&logoColor=white
 [community_forum]: https://community.home-assistant.io/u/3_14
@@ -76,7 +75,6 @@
 
 <a href='https://ko-fi.com/piotrmachowski' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
 <a href="https://paypal.me/PiMachowski" target="_blank"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" border="0" alt="PayPal Logo" style="height: auto !important;width: auto !important;"></a>
-<a href="https://www.buymeacoffee.com/PiotrMachowski" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 
 [hacs_default_shield]: https://img.shields.io/static/v1.svg?label=&message=Default&style=popout&color=green&labelColor=41bdf5&logo=HomeAssistantCommunityStore&logoColor=white
