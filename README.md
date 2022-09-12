@@ -1,11 +1,15 @@
 ![stars_badge](https://img.shields.io/github/stars/PiotrMachowski?affiliations=OWNER&label=Total%20Stars)
 ![followers_badge](https://img.shields.io/github/followers/PiotrMachowski?label=Followers)
 [![Community Forum][community_forum_shield]][community_forum]
-[![Buy me a coffee][buy_me_a_coffee_shield]][buy_me_a_coffee]
+[![Ko-Fi][ko_fi_shield]][ko_fi]
 [![PayPal.Me][paypal_me_shield]][paypal_me]
+[![Buy me a coffee][buy_me_a_coffee_shield]][buy_me_a_coffee]
 
 [community_forum_shield]: https://img.shields.io/static/v1.svg?label=%20&message=Forum&style=popout&color=41bdf5&logo=HomeAssistant&logoColor=white
 [community_forum]: https://community.home-assistant.io/u/3_14
+
+[ko_fi_shield]: https://img.shields.io/static/v1.svg?label=%20&message=Ko-Fi&color=F16061&logo=ko-fi&logoColor=white
+[ko_fi]: https://ko-fi.com/piotrmachowski
 
 [buy_me_a_coffee_shield]: https://img.shields.io/static/v1.svg?label=%20&message=Buy%20me%20a%20coffee&color=6f4e37&logo=buy%20me%20a%20coffee&logoColor=white
 [buy_me_a_coffee]: https://www.buymeacoffee.com/PiotrMachowski
@@ -15,7 +19,7 @@
 
 
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=PiotrMachowski&theme=dark)
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=PiotrMachowski&theme=dark)
 
 ## Custom components
 
@@ -70,9 +74,9 @@
 | [Xiaomi Cloud Token Extractor](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor) | ![stars_badge](https://img.shields.io/github/stars/PiotrMachowski/Xiaomi-cloud-tokens-extractor?label=)       | [![release_badge](https://img.shields.io/github/v/release/PiotrMachowski/Xiaomi-cloud-tokens-extractor?label=)](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor/releases/latest) | [![Downloads](https://img.shields.io/github/downloads/PiotrMachowski/Xiaomi-cloud-tokens-extractor/total?label=)](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor/releases) | [![Last commit](https://img.shields.io/github/last-commit/PiotrMachowski/Xiaomi-cloud-tokens-extractor?label=)](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor)             |                                                                                                                 |
 
 
-
-<a href="https://www.buymeacoffee.com/PiotrMachowski" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+<a href='https://ko-fi.com/piotrmachowski' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
 <a href="https://paypal.me/PiMachowski" target="_blank"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" border="0" alt="PayPal Logo" style="height: auto !important;width: auto !important;"></a>
+<a href="https://www.buymeacoffee.com/PiotrMachowski" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 
 [hacs_default_shield]: https://img.shields.io/static/v1.svg?label=&message=Default&style=popout&color=green&labelColor=41bdf5&logo=HomeAssistantCommunityStore&logoColor=white
