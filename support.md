@@ -1,4 +1,4 @@
-# Donate
+# Support
 
 If you want to support my work with a donation you can use one of the following platforms:
 
